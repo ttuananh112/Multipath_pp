@@ -1,0 +1,41 @@
+name: "MP"
+
+data:
+  dim: 64
+  history_steps: 20
+  future_steps: 30
+  num_info: 4  # traffic_light, map_waypoints, agent, others
+  num_waypoints: 50  # N-th nearest waypoints
+
+mlp:
+  drop_rate: 0.
+
+mcg: # MultiContextGating
+  repeat: 3
+
+anchor:
+  num_anchor: 16
+
+random:
+  seed_number: 42
+
+train:
+  # --- save log/checkpoint ---
+  save_path: "logs/v2f"
+  # --- device ---
+  device: "cuda"  # cpu / cuda
+  # --- process ---
+  max_workers: 10  # num cores to process data
+  num_gpus: 1  # num gpus for training parallel
+  precision: 32
+  # --- hyper params ---
+  batch_size: 32
+  train_ratio: 0.8
+  epochs: 50
+  # --- lr scheduler ---
+  lower_lr: 1e-5
+  upper_lr: 1e-3
+  step_size_up: 2
+  gamma: 0.9 # factor to reduce lr
+  # --- loss ---
+  alpha: 0.5  # ratio of classification loss part in loss func

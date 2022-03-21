@@ -1,0 +1,3 @@
+name: "carla_simulation"
+# --- data path ---
+folder_path: "/home/anhtt163/dataset/OBP/mp_datav2/all_batches"
